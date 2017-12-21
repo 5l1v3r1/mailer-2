@@ -1,7 +1,6 @@
-
-// import nodemailer from 'nodemailer';
 const nodemailer = require('nodemailer');
 const transporterConfig = require('./transporter.config.json');
+
 
 
 // Inputs
@@ -9,8 +8,7 @@ let inputFirstName = "david";
 let inputLastName = "cHung";
 // let inputCompany = "pelotea";
 let inputAddresses = [
-    `test.com`,
-    `othertest.io`
+    `test.com`
 ];
 
 let subject = "Front End Web Developer";
@@ -56,6 +54,12 @@ inputAddresses.forEach(addr => {
     ]);
 })
 
+const isTesting = false;
+if(isTesting) {
+    emailAddresses.push(transporterConfig.auth.user);
+}
+
+
 
 
 
@@ -63,9 +67,6 @@ inputAddresses.forEach(addr => {
 console.log("Creating emails...");
 let transporter = nodemailer.createTransport(transporterConfig);
 emailAddresses.forEach(email => {
-
-    // Send a copy of the email to me.
-    // testOutput();
 
     // Create mail object
     let mailOptions = {
@@ -84,30 +85,3 @@ emailAddresses.forEach(email => {
     });
 
 });
-
-
-
-
-
-function testOutput() {
-
-    // Send a single test email.
-    let mailOptions = {
-        to: 'davidc4747@yahoo.com',
-        subject: subject,
-        text: message,
-        attachments:[
-            {
-                path: '../../Docs/David-Chung.pdf'
-            }
-        ]
-    };
-    console.log("Sending message to ", email);
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log('Message error:', email, error);
-        }
-        console.log('Message sent: ', email, info.messageId);
-    });
-
-}
