@@ -5,21 +5,29 @@ const transporterConfig = require('./transporter.config.json');
 
 
 // Inputs
-let inputFirstName = "davId";
+let inputFirstName = "david";
 let inputLastName = "cHung";
-let inputCompany = "pdHi";
+// let inputCompany = "pelotea";
+let inputAddresses = [
+    `test.com`,
+    `othertest.io`
+];
 
-let subject = "Frontend Developer";
-let message = `Hey -----,
+let subject = "Front End Web Developer";
+let message = `Hi Prasanjit,
 
-nice!!
+I really like the mission of Pelotea. I'm a web developer based in San Francisco, and would love to help out.
+I know you're probably on holiday right now, but if you have any time to meet or talk I'd really apprieciate it.
 
 Thank you,
 David Chung`;
 
 // Phone: (908) 930 - 8054
 // Linkedin: https://www.linkedin.com/in/davidc4747/
-// Twitter: https://twitter.com/davidc4747`;
+// GitHub: https://github.com/davidc4747
+// Pluralsight: https://app.pluralsight.com/profile/davidc4747
+// Twitter: https://twitter.com/davidc4747
+// `;
 
 
 
@@ -28,22 +36,25 @@ David Chung`;
 // Sanitize input
 let firstName = inputFirstName.trim().toLowerCase();
 let lastName = inputLastName.trim().toLowerCase();
-let company = inputCompany.trim().toLowerCase();
+// let company = inputCompany.trim().toLowerCase();
 
 // Get initials
 let firstInitial = firstName.charAt(0);
 let lastInitial = lastName.charAt(0);
 
 // Generate possible emails
-let emailAddresses = [
-    `${firstName}${lastInitial}@${company}.com`,
-    `${firstInitial}${lastName}@${company}.com`,
-    `${firstName}${lastName}@${company}.com`,
-    `${firstName}.${lastName}@${company}.com`,
-    `${firstName}_${lastName}@${company}.com`
-];
-
-
+let emailAddresses = [];
+inputAddresses.forEach(addr => {
+    addr = addr.trim().toLowerCase();
+    emailAddresses = emailAddresses.concat([
+        `${firstName}@${addr}`,
+        `${firstName}${lastInitial}@${addr}`,
+        `${firstInitial}${lastName}@${addr}`,
+        `${firstName}${lastName}@${addr}`,
+        `${firstName}.${lastName}@${addr}`,
+        `${firstName}_${lastName}@${addr}`
+    ]);
+})
 
 
 
@@ -61,13 +72,13 @@ emailAddresses.forEach(email => {
         to: email,
         subject: subject,
         text: message,
-        attachments:[{ path: '../../Docs/David-Chung.pdf'}]
+        attachments:[{ path: '../../Docs/DavidGChung.pdf'}]
     };
 
     // Send emails
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return console.log('Message error:', email, error);
+            return console.log('Message failed:', email, error);
         }
         console.log('Message sent: ', email, info.messageId);
     });
