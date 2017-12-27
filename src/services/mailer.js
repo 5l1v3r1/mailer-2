@@ -4,6 +4,7 @@ const transporterConfig = require('./transporter.config.json');
 
 
 // Inputs
+const isTesting = false;
 let inputFirstName = "---";
 let inputLastName = "---";
 let inputAddresses = [
@@ -55,7 +56,6 @@ inputAddresses.forEach(addr => {
     ]);
 })
 
-const isTesting = false;
 if(isTesting) {
     emailAddresses.push(transporterConfig.auth.user);
 }
