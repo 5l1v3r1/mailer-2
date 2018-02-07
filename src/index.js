@@ -5,13 +5,11 @@ const url = require('url');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
-
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-      width: 1000,
-      height: 500,
-    //   frame: false
+      width: 850,
+      height: 640,
     });
 
     win.setMenu(null);
@@ -19,7 +17,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'components', 'new-mail', 'newmail.html'),
+    pathname: path.join(__dirname, 'containers', 'new-mail', 'newmail.html'),
     protocol: 'file:',
     slashes: true
   }));
