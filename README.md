@@ -4,7 +4,7 @@ Guesses emails like crazy
 
 ## Screenshots
 
-<img src="demos/shot3.png" alt="Example2">    
+<img src="demos/shot.png" alt="Example2">    
 
 ## Installation
 
