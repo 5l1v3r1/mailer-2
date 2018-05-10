@@ -2,8 +2,12 @@
 
 Guesses emails like crazy
 
-## Installing / Getting started
+## Screenshots
 
+<img src="demos/shot1" alt="Example1" width="250" style="float: left;">
+<img src="demos/shot2" alt="Example2" width="250" style="">   
+
+## Installing / Getting started
 
 ```shell
 git clone https://github.com/davidc4747/mailer.git
@@ -17,6 +21,7 @@ HTML & CSS
 JavaScript  
 Electron  
 ReactJS  
+nodemailer  
 
 ### Prerequisites
 What is needed to set up the dev environment:  
@@ -33,6 +38,7 @@ the project further:
 git clone https://github.com/davidc4747/mailer.git
 cd mailer/
 npm i
+npm start
 ```
 
 ### Building
@@ -49,16 +55,11 @@ npm run build
 
 ### Deploying / Publishing
 
-How to Build: 
+How to Deploying: 
 
 ```shell
 # TODO
 ```
-
-## Versioning
-
-We can maybe use [SemVer](http://semver.org/) for versioning. For the versions available, see the [link to tags on this repository](/tags).
-
 
 ## Configuration
 
