@@ -1,0 +1,41 @@
+
+/*=====================*\
+    #Form
+\*=====================*/
+
+.form-group {
+    float: left;
+    padding: 0.3rem;
+}
+
+.lbl {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.txt {
+    margin: 0.3rem 0.0rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+
+    width: 100%;
+
+    border-radius: 4px;
+    outline: none;
+}
+
+.btn {
+    padding: 0.6rem 0.8rem;
+    border: none;
+
+    color: #fbfbfb;
+    background-color: #2547AA;
+
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+    .btn--submit {
+        float: right;
+    }

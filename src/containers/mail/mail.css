@@ -1,0 +1,72 @@
+
+/*=====================*\
+    #Header
+\*=====================*/
+
+.header {
+    display: flex;
+    padding: 0.2rem 0.6rem;
+    margin: 0.4rem auto;
+    border-bottom: 1px solid #ccc;
+
+    width: 98%;
+
+    align-items: center;
+}
+
+    .header__menu-button {    }
+
+    .header__title {
+        padding: 0;
+        margin: 0.4rem;
+
+        font-size: 1.2rem;
+    }
+
+    .header__close {
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+
+
+
+
+/*=====================*\
+    #Content
+\*=====================*/
+
+.content {
+    overflow: hidden;
+    margin: 0 auto;
+    width: 95%;
+}
+
+
+
+
+
+/*=====================*\
+    #Output
+\*=====================*/
+
+.output {
+    clear: both;
+    padding: 0 0.4rem;
+    margin: 0.8rem 0;
+    border: 1px solid #ccc;
+
+    background-color: #eee;
+    border-radius: 4px;
+
+    min-height: 0.8rem;
+    list-style-type: none;
+}
+
+.output-item {
+    padding: 0.3rem 0.4rem;
+
+    & + & {
+        border-top: 1px solid #ccc;
+    }
+}
