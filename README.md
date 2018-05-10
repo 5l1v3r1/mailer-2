@@ -4,8 +4,8 @@ Guesses emails like crazy
 
 ## Screenshots
 
-<img src="demos/shot1.png" alt="Example1" width="250" style="float: left;">
-<img src="demos/shot2.png" alt="Example2" width="250" style="">   
+<img src="demos/shot1.png" alt="Example1" width="350" style="float: left;">
+<img src="demos/shot3.png" alt="Example2" width="350" style="">    
 
 ## Installation
 
