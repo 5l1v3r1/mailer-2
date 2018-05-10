@@ -4,14 +4,20 @@ Guesses emails like crazy
 
 ## Screenshots
 
-<img src="demos/shot1" alt="Example1" width="250" style="float: left;">
-<img src="demos/shot2" alt="Example2" width="250" style="">   
+<img src="demos/shot1.png" alt="Example1" width="250" style="float: left;">
+<img src="demos/shot2.png" alt="Example2" width="250" style="">   
 
-## Installing / Getting started
+## Installation
 
 ```shell
 git clone https://github.com/davidc4747/mailer.git
 cd mailer/
+npm i
+npm run pack
+
+# A package of the project will be created inside the "package/" folder
+# An executable file for your operating system will be inside
+
 ```
 
 ## Developing
