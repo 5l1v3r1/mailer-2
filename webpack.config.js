@@ -2,6 +2,8 @@
 const path = require('path');
 
 module.exports = {
+    target: 'electron-renderer',
+    
     entry: './src/index.js',
 
     output: {
