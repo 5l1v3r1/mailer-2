@@ -25,7 +25,7 @@ button.addEventListener('click', e => {
         subject,
         message,
         isTesting,
-        // attachments:[{ path: '../../../../Docs/DavidGChung.pdf'}] // TODO:
+        attachments:[{ path: 'C:/Users/Deku/Documents/DavidGChung.pdf'}] // TODO:
     });
 
     document.addEventListener('creating-emails', (event, args) => {
