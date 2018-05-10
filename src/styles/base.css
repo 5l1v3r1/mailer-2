@@ -17,3 +17,7 @@ body {
     background-color: #fbfbfb;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+}

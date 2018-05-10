@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import { ipcRenderer } from 'electron';
-
 import './mail.css';
 import mailer from '../../services/mailer.js';
 
@@ -14,13 +12,15 @@ class Mail extends Component {
         super(props);
 
         this.state = {
-            isTesting: true,
+            isTesting: false,
             firstname: '',
             lastname: '',
             domain: '',
             subject: '',
-            message: ''
-        }
+            message: '',
+
+            output: []
+        };
     }
 
 
@@ -29,8 +29,11 @@ class Mail extends Component {
     }
 
     handleSendMail = (event) => {
+        // Clear output box
+        this.setState({ output: [] });
+
         // Send Emails
-        mailer({
+        let mailPromises = mailer({
             inputFirstName: this.state.firstname,
             inputLastName: this.state.lastname,
             inputDomains: [this.state.domain],
@@ -40,18 +43,18 @@ class Mail extends Component {
             attachments: [{ path: 'C:/Users/Deku/Documents/DavidGChung.pdf' }] // TODO:
         });
 
-        // document.addEventListener('creating-emails', (event, args) => {
-        //     // Display creating-emails message
-        //     console.log('Creating emails...');
-        //     let outputElem = document.getElementsByClassName('output')[0];
-        //     outputElem.innerHTML = `<li>Creating emails...</li>`;
-        // });
-    
-        // // contact the service. send the mail
-        // document.addEventListener('mailer-message', (event, args) => {
-        //     let outputElem = document.getElementsByClassName('output')[0];
-        //     outputElem.innerHTML = outputElem.innerHTML + `<li>${event.detail}</li>`;
-        // });
+        // Print the status if each email
+        mailPromises.forEach(prom => {
+            prom
+                .then((res) => {
+                    // Email Successfull
+                    this.setState({ output: [...this.state.output, `Email sent to ${res.email}`] });
+                })
+                .catch((err) => {
+                    // Email failed
+                    this.setState({ output: [...this.state.output, `Email failed: ${err.email}`] });
+                });
+        });
     }
 
     render() {
@@ -83,14 +86,19 @@ class Mail extends Component {
 
                 <div className="form-group" style={{ width: "100%" }}>
                     <label className="lbl" for="message">Message</label>
-                    <textarea name="message" className="txt" name="" value={this.state.message} onChange={this.handleChange}></textarea>
+                    <textarea name="message" className="txt" value={this.state.message} onChange={this.handleChange}></textarea>
                 </div>
 
                 <div className="form-group" style={{ width: "100%" }}>
-                    <button className="btn btn--submit" onClick={this.handleSendMail}>Send!</button>
+                    <button className="btn btn--submit" onClick={this.handleSendMail}>Send</button>
                 </div>
 
-                <ul className="output"></ul>
+
+                {this.state.output.length > 0 && (
+                    <ul className="output">
+                        {this.state.output.map(op => <li className="output-item">{op}</li>)}
+                    </ul>
+                )}
 
             </main>
         );

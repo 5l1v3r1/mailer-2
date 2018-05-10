@@ -9,7 +9,7 @@ function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
         width: 850,
-        height: 640,
+        height: 605,
     });
 
     win.setMenu(null);
@@ -23,7 +23,7 @@ function createWindow() {
     }));
 
     // Open the DevTools.
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     // Emitted when the window is closed.
     win.on('closed', () => {
