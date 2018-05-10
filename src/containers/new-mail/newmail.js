@@ -1,5 +1,4 @@
 'use strict';
-const {ipcRenderer} = require('electron');
 const guessEmail = require('../../services/mailer.js');
 
 
