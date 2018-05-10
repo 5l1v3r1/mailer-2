@@ -15,7 +15,7 @@ const transporterConfig = require('../../transporter.config.json');
  *  @param {bool} isTesting - Decides if the user should send a copy of the email to himself
  *  @param {array<object>} attachments - Anything you might want to attach to the message
  */
-module.exports = function({ inputFirstName, inputLastName, inputDomains, subject, message, isTesting, attachments }) {
+module.exports = function ({ inputFirstName, inputLastName, inputDomains, subject, message, isTesting, attachments }) {
 
     // Sanitize input
     let firstName = inputFirstName.trim().toLowerCase();
@@ -39,7 +39,8 @@ module.exports = function({ inputFirstName, inputLastName, inputDomains, subject
         ]);
     })
 
-    if(isTesting) {
+    if (isTesting) {
+        // Send a copy of the email to the user's email address
         emailAddresses.push(transporterConfig.auth.user);
     }
 
@@ -47,7 +48,7 @@ module.exports = function({ inputFirstName, inputLastName, inputDomains, subject
 
 
     // Setup nodemailer
-    document.dispatchEvent(new CustomEvent("creating-emails"));
+    let promises = [];
     let transporter = nodemailer.createTransport(transporterConfig);
     emailAddresses.forEach(email => {
 
@@ -59,24 +60,25 @@ module.exports = function({ inputFirstName, inputLastName, inputDomains, subject
             attachments
         };
 
-        // Send emails
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(`Message failed: ${email} ${error}`);
-                // Trigger message event
-                document.dispatchEvent(new CustomEvent("mailer-message", {
-                    detail: `Message failed: ${email}`
-                }));
-            }
-            else {
-                console.log(`Message sent: ${email} ${info.messageId}`);
-                // Trigger message event
-                document.dispatchEvent(new CustomEvent("mailer-message", {
-                    detail: `Message sent: ${email}`
-                }));
-            }
+
+        let prom = new Promise(function (resolve, reject) {
+            // Send emails
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log(`Email failed: ${email} ${error}`);
+                    reject({ email, info, error });
+                }
+                else {
+                    console.log(`Email sent: ${email} ${info.messageId}`);
+                    resolve({ email, info });
+                }
+            });
+
         });
 
+
+        promises.push(prom);
     });
 
+    return promises;
 }
