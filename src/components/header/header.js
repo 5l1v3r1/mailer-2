@@ -12,7 +12,6 @@ class Header extends Component {
     render() {
         let { currentTask } = this.props;
         let currentTaskIndex = Tasks.getTaskIndex(currentTask);
-        console.log(currentTask);
 
         return (
             <header>
