@@ -26,18 +26,18 @@ class CreateMessage extends Component {
         this.props.taskDone();
     }
 
-    
+
     render() {
         return (
             <div>
                 <div className="form-group" style={{ width: "100%" }}>
-                    <label className="lbl" for="subject">Subject</label>
+                    <label className="lbl" htmlFor="subject">Subject</label>
                     <input name="subject" className="txt" type="text" value={this.state.subject} onChange={this.handleChange} />
                 </div>
 
 
                 <div className="form-group" style={{ width: "100%" }}>
-                    <label className="lbl" for="message">Message</label>
+                    <label className="lbl" htmlFor="message">Message</label>
                     <textarea name="message" className="txt" value={this.state.message} onChange={this.handleChange}></textarea>
                 </div>
 

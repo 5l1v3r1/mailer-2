@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import transporterConfig from '../../../transporter.config.json';
+
 
 
 class GenerateMail extends Component {
@@ -62,19 +64,19 @@ class GenerateMail extends Component {
         return (
             <section>
                 <div className="form-group" style={{ width: "50%" }}>
-                    <label className="lbl" for="firstname">First Name</label>
+                    <label className="lbl" htmlFor="firstname">First Name</label>
                     <input name="firstname" className="txt" type="text" value={this.state.firstname} onChange={this.handleChange} />
                 </div>
 
 
                 <div className="form-group" style={{ width: "50%" }}>
-                    <label className="lbl" for="lastname">Last Name</label>
+                    <label className="lbl" htmlFor="lastname">Last Name</label>
                     <input name="lastname" className="txt" type="text" value={this.state.lastname} onChange={this.handleChange} />
                 </div>
 
 
                 <div className="form-group" style={{ width: "100%" }}>
-                    <label className="lbl" for="domain">Domain</label>
+                    <label className="lbl" htmlFor="domain">Domain</label>
                     <input name="domain" className="txt" type="text" value={this.state.domain} onChange={this.handleChange} />
                 </div>
 
