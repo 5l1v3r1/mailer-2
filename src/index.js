@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom';
 
 import './styles/styles.css';
 import Header from './components/header/header.js';
+import Tasks from './components/tasks/tasks';
+
 import GenerateMail from './containers/generateMail/generateMail';
 import EditEmail from './containers/editEmail/editEmail';
 import CreateMessage from './containers/createMessage/createMessage';
 import SendEmail from './containers/sendEmails/sendEmails';
 
-
-
-let Tasks = [
-    'GENERATE_EMAILS',
-    'EDIT_EMIALS',
-    'CREATE_MESSAGE',
-    'DONE'
-];
 
 
 
@@ -25,7 +19,8 @@ class App extends Component {
 
         // Test state 1
         this.state = {
-            currentTask: Tasks[0],
+            displaySidebar: false,
+            currentTask: Tasks.GENERATE_EMAILS,
             emails: [],
             emailContent: {
                 subject: '',
@@ -36,8 +31,7 @@ class App extends Component {
 
     taskDone = () => {
         // Move to the next in the list
-        let nextTaskIndex = (Tasks.indexOf(this.state.currentTask) + 1) % Tasks.length;
-        this.setState({ currentTask: Tasks[nextTaskIndex] });
+        this.setState({ currentTask: Tasks.getNextTask(this.state.currentTask) });
     }
 
     updateEmails = (emails) => {
@@ -48,30 +42,37 @@ class App extends Component {
         this.setState({ emailContent });
     }
 
+    toggleSidebar = () => {
+        this.setState((prevState) => ({ displaySidebar: !prevState.displaySidebar }));
+    }
+
 
 
     render() {
-        let { currentTask } = this.state;
+        let { currentTask, displaySidebar } = this.state;
 
         return (
             <section>
-                <Header />
+                <Header currentTask={currentTask} toggleSidebar={this.toggleSidebar} />
 
-                {/* TODO: sidebar here */}
+                {displaySidebar && (
+                    <aside>I'm here!</aside>
+                )}
 
-                {currentTask === 'GENERATE_EMAILS' && (
+
+                {currentTask === Tasks.GENERATE_EMAILS && (
                     <GenerateMail updateEmails={this.updateEmails} taskDone={this.taskDone} />
                 )}
 
-                {currentTask === 'EDIT_EMIALS' && (
+                {currentTask === Tasks.EDIT_EMIALS && (
                     <EditEmail emails={this.state.emails} updateEmails={this.updateEmails} taskDone={this.taskDone} />
                 )}
 
-                {currentTask === 'CREATE_MESSAGE' && (
+                {currentTask === Tasks.CREATE_MESSAGE && (
                     <CreateMessage emails={this.state.emails} updateEmailContent={this.updateEmailContent} taskDone={this.taskDone} />
                 )}
 
-                {currentTask === 'DONE' && (
+                {currentTask === Tasks.DONE && (
                     <SendEmail emails={this.state.emails} emailContent={this.state.emailContent} taskDone={this.taskDone} />
                 )}
             </section>

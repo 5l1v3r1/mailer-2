@@ -45,7 +45,6 @@ class GenerateMail extends Component {
         }
 
 
-        console.log(`genMail.js`, newEmails);
         // Update parent state
         this.props.updateEmails(newEmails);
 
