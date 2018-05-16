@@ -46,7 +46,7 @@ class SendEmail extends Component {
         return (
             <div>
                 <ul>
-                    {this.state.output.map(op => <li>{op}</li>)}
+                    {this.state.output.map((op, index) => <li key={index}>{op}</li>)}
                 </ul>
             </div>
         );

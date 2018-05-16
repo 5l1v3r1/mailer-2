@@ -5,9 +5,10 @@
     "main": "src/main.js",
     "scripts": {
         "test": "",
-        "start": "electron .",
-        "build": "set NODE_ENV=development&& webpack",
-        "pack": "electron-packager . 'Mailer' --out ./package --overwrite"
+        "start": "concurrently \"webpack-dev-server --watch\" \"npm run electron\"",
+        "build": "webpack",
+        "electron": "electron .",
+        "pack": "npm run build && electron-packager . 'Mailer' --out ./package --overwrite"
     },
     "author": "David Chung",
     "license": "ISC",
@@ -29,7 +30,9 @@
         "webpack-cli": "^2.1.3"
     },
     "dependencies": {
-        "webpack": "^4.8.1"
+        "concurrently": "^3.5.1",
+        "webpack": "^4.8.1",
+        "webpack-dev-server": "^3.1.4"
     },
     "babel": {
         "presets": [
