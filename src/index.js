@@ -6,7 +6,7 @@ import Header from './components/header/header.js';
 import GenerateMail from './containers/generateMail/generateMail';
 import EditEmail from './containers/editEmail/editEmail';
 import CreateMessage from './containers/createMessage/createMessage';
-import { log } from 'util';
+import SendEmail from './containers/sendEmails/sendEmails';
 
 
 
@@ -19,23 +19,14 @@ let Tasks = [
 
 
 
-
-
 class App extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     currentTask: Tasks[0], //default to first task
-        //     emails: [],
-        //     subject: '',
-        //     message: ''
-        // };
-
 
         // Test state 1
         this.state = {
-            currentTask: Tasks[2],
-            emails: ["qqqq@rrrrr.com", "qqqqw@rrrrr.com", "qwwww@rrrrr.com", "qqqqwwww@rrrrr.com", "qqqq.wwww@rrrrr.com", "qqqq_wwww@rrrrr.com"],
+            currentTask: Tasks[0],
+            emails: [],
             emailContent: {
                 subject: '',
                 message: ''
@@ -81,8 +72,7 @@ class App extends Component {
                 )}
 
                 {currentTask === 'DONE' && (
-                    // <CreateMessage emails={this.state.emails} taskDone={this.taskDone} />
-                    <span>DONE!!!{console.log(this.state)}</span>
+                    <SendEmail emails={this.state.emails} emailContent={this.state.emailContent} taskDone={this.taskDone} />
                 )}
             </section>
         );
