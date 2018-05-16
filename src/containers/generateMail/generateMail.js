@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 
 class GenerateMail extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             isTesting: false,
@@ -19,11 +20,11 @@ class GenerateMail extends Component {
         // Sanitize input
         let firstName = this.state.firstname.trim().toLowerCase();
         let lastName = this.state.lastname.trim().toLowerCase();
-    
+
         // Get initials
         let firstInitial = firstName.charAt(0);
         let lastInitial = lastName.charAt(0);
-    
+
         // Generate possible emails
         let newEmails = [];
         [this.state.domain].forEach(addr => {
@@ -37,7 +38,7 @@ class GenerateMail extends Component {
                 `${firstName}_${lastName}@${addr}`
             ]);
         })
-    
+
         if (this.state.isTesting) {
             // Send a copy of the email to the user's email address
             newEmails.push(transporterConfig.auth.user);
@@ -77,7 +78,7 @@ class GenerateMail extends Component {
                     <label className="lbl" for="domain">Domain</label>
                     <input name="domain" className="txt" type="text" value={this.state.domain} onChange={this.handleChange} />
                 </div>
-                
+
 
                 <div className="form-group" style={{ width: "100%" }}>
                     <button className="btn btn--submit" onClick={this.handleGenerateEmails}>Create Emails</button>
@@ -88,6 +89,11 @@ class GenerateMail extends Component {
         );
     }
 }
+
+GenerateMail.propTypes = {
+    updateEmails: PropTypes.func.isRequired,
+    taskDone: PropTypes.func.isRequired
+};
 
 
 export default GenerateMail;

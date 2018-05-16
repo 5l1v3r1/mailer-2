@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import './styles/styles.css';
-import Mail from './containers/mail/mail';
-import GenerateMail from './containers/generateMail/generateMail';
 import Header from './components/header/header.js';
-import { stat } from 'fs';
+import GenerateMail from './containers/generateMail/generateMail';
+import EditEmail from './containers/editEmail/editEmail';
 
 
 
@@ -17,12 +16,22 @@ let Tasks = [
 ];
 
 
+
+
+
 class App extends Component {
     constructor(props) {
         super(props);
+        // this.state = {
+        //     currentTask: Tasks[0], //default to first task
+        //     emails: []
+        // };
+
+
+        // Test state 1
         this.state = {
-            currentTask: Tasks[0], //default to first task
-            emails: []
+            currentTask: Tasks[1], 
+            emails: ["qqqq@rrrrr.com", "qqqqw@rrrrr.com", "qwwww@rrrrr.com", "qqqqwwww@rrrrr.com", "qqqq.wwww@rrrrr.com", "qqqq_wwww@rrrrr.com"]
         };
     }
 
@@ -32,15 +41,10 @@ class App extends Component {
         this.setState({ currentTask: Tasks[nextTaskIndex] });
     }
 
-
-
     updateEmails = (emails) => {
-        this.setState({ emails: emails });
+        this.setState({ emails });
     }
 
-    appendEmails = (emails) => {
-        this.setState((prevState) => { emails: [...prevState.emails, ...emails] });
-    }
 
 
     render() {
@@ -54,6 +58,15 @@ class App extends Component {
 
                 {currentTask === 'GENERATE_EMAILS' && (
                     <GenerateMail updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                )}
+
+                {currentTask === 'EDIT_EMIALS' && (
+                    <EditEmail emails={this.state.emails} updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                )}
+
+                {currentTask === 'CREATE_MESSAGE' && (
+                    // <EditEmail emails={this.state.emails} updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                    <span>CREATE_MESSAGE</span>
                 )}
             </section>
         );
