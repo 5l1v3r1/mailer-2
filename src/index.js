@@ -5,6 +5,8 @@ import './styles/styles.css';
 import Header from './components/header/header.js';
 import GenerateMail from './containers/generateMail/generateMail';
 import EditEmail from './containers/editEmail/editEmail';
+import CreateMessage from './containers/createMessage/createMessage';
+import { log } from 'util';
 
 
 
@@ -24,14 +26,20 @@ class App extends Component {
         super(props);
         // this.state = {
         //     currentTask: Tasks[0], //default to first task
-        //     emails: []
+        //     emails: [],
+        //     subject: '',
+        //     message: ''
         // };
 
 
         // Test state 1
         this.state = {
-            currentTask: Tasks[1], 
-            emails: ["qqqq@rrrrr.com", "qqqqw@rrrrr.com", "qwwww@rrrrr.com", "qqqqwwww@rrrrr.com", "qqqq.wwww@rrrrr.com", "qqqq_wwww@rrrrr.com"]
+            currentTask: Tasks[2],
+            emails: ["qqqq@rrrrr.com", "qqqqw@rrrrr.com", "qwwww@rrrrr.com", "qqqqwwww@rrrrr.com", "qqqq.wwww@rrrrr.com", "qqqq_wwww@rrrrr.com"],
+            emailContent: {
+                subject: '',
+                message: ''
+            }
         };
     }
 
@@ -43,6 +51,10 @@ class App extends Component {
 
     updateEmails = (emails) => {
         this.setState({ emails });
+    }
+
+    updateEmailContent = (emailContent) => {
+        this.setState({ emailContent });
     }
 
 
@@ -65,8 +77,12 @@ class App extends Component {
                 )}
 
                 {currentTask === 'CREATE_MESSAGE' && (
-                    // <EditEmail emails={this.state.emails} updateEmails={this.updateEmails} taskDone={this.taskDone} />
-                    <span>CREATE_MESSAGE</span>
+                    <CreateMessage emails={this.state.emails} updateEmailContent={this.updateEmailContent} taskDone={this.taskDone} />
+                )}
+
+                {currentTask === 'DONE' && (
+                    // <CreateMessage emails={this.state.emails} taskDone={this.taskDone} />
+                    <span>DONE!!!{console.log(this.state)}</span>
                 )}
             </section>
         );
