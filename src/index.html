@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Mailer</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Mailer</title>
 
-        <!-- <link rel="stylesheet" href="../../fontawesome-free-5.0.2/web-fonts-with-css/css/fontawesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="../../fontawesome-free-5.0.2/web-fonts-with-css/css/fontawesome.min.css"> -->
+</head>
 
-    </head>
+<body>
+    <div class="app"></div>
 
-    <body>
-        <div class="app"></div>
-
-        <script src="../build/bundle.js"></script>
-    </body>
+    <!-- <script src="../build/bundle.js"></script> -->
+    <script>
+        // Run on dev server if available
+        if (typeof process !== 'undefined') {
+            const port = process.env.PORT || 8080;
+            var bundleScriptEl = document.createElement('script');
+            bundleScriptEl.src = `http://127.0.0.1:${port}/build/bundle.js`;
+            bundleScriptEl.async = true;
+            document.currentScript.parentNode.insertBefore(bundleScriptEl, document.currentScript);
+        }
+        else {
+            require('../build/bundle.js');
+        }
+    </script>
+</body>
 
 </html>
