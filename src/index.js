@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './styles/styles.css';
 import Header from './components/header/header.js';
+import SideBar from './components/sideBar/sideBar.js';
 import Tasks from './components/tasks/tasks';
 
 import GenerateMail from './containers/generateMail/generateMail';
@@ -20,6 +21,7 @@ class App extends Component {
         // Test state 1
         this.state = {
             displaySidebar: false,
+            currentView: 'MAILER',
             currentTask: Tasks.GENERATE_EMAILS,
             emails: [],
             emailContent: {
@@ -42,6 +44,10 @@ class App extends Component {
         this.setState({ emailContent });
     }
 
+    updateCurrentView = (currentView) => {
+        this.setState({ currentView });
+    }
+
     toggleSidebar = () => {
         this.setState((prevState) => ({ displaySidebar: !prevState.displaySidebar }));
     }
@@ -49,32 +55,40 @@ class App extends Component {
 
 
     render() {
-        let { currentTask, displaySidebar } = this.state;
+        let { currentView, currentTask, displaySidebar } = this.state;
 
         return (
             <section>
                 <Header currentTask={currentTask} toggleSidebar={this.toggleSidebar} />
 
                 {displaySidebar && (
-                    <aside>I'm here!</aside>
+                    <SideBar updateCurrentView={this.updateCurrentView} />
                 )}
 
+                {currentView === 'MAILER' && (
+                    <div>
+                        {currentTask === Tasks.GENERATE_EMAILS && (
+                            <GenerateMail updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                        )}
 
-                {currentTask === Tasks.GENERATE_EMAILS && (
-                    <GenerateMail updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                        {currentTask === Tasks.EDIT_EMIALS && (
+                            <EditEmail emails={this.state.emails} updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                        )}
+
+                        {currentTask === Tasks.CREATE_MESSAGE && (
+                            <CreateMessage emails={this.state.emails} updateEmailContent={this.updateEmailContent} taskDone={this.taskDone} />
+                        )}
+
+                        {currentTask === Tasks.DONE && (
+                            <SendEmail emails={this.state.emails} emailContent={this.state.emailContent} taskDone={this.taskDone} />
+                        )}
+                    </div>
                 )}
 
-                {currentTask === Tasks.EDIT_EMIALS && (
-                    <EditEmail emails={this.state.emails} updateEmails={this.updateEmails} taskDone={this.taskDone} />
+                {currentView === 'SETTINGS' && (
+                    <div>Settings!!</div>
                 )}
 
-                {currentTask === Tasks.CREATE_MESSAGE && (
-                    <CreateMessage emails={this.state.emails} updateEmailContent={this.updateEmailContent} taskDone={this.taskDone} />
-                )}
-
-                {currentTask === Tasks.DONE && (
-                    <SendEmail emails={this.state.emails} emailContent={this.state.emailContent} taskDone={this.taskDone} />
-                )}
             </section>
         );
     }

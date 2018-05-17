@@ -3,19 +3,12 @@ import PropTypes from 'prop-types';
 
 
 class SideBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentView: ''
-        };
-    }
     render() {
         return (
             <aside>
                 <ul>
-                    <li>Open</li>
-                    <li>Mail</li>
-                    <li>Settings</li>
+                    <li onClick={this.props.updateCurrentView.bind(this, 'MAILER')}>Mail</li>
+                    <li onClick={this.props.updateCurrentView.bind(this, 'SETTINGS')}>Settings</li>
                 </ul>
             </aside>
         );
@@ -23,7 +16,7 @@ class SideBar extends Component {
 }
 
 SideBar.propTypes = {
-
-}
+    updateCurrentView: PropTypes.func.isRequired
+};
 
 export default SideBar;
