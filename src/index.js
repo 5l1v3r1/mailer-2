@@ -10,6 +10,7 @@ import GenerateMail from './containers/generateMail/generateMail';
 import EditEmail from './containers/editEmail/editEmail';
 import CreateMessage from './containers/createMessage/createMessage';
 import SendEmail from './containers/sendEmails/sendEmails';
+import UserSettings from './containers/userSettings/userSettings.js';
 
 
 
@@ -27,7 +28,8 @@ class App extends Component {
             emailContent: {
                 subject: '',
                 message: ''
-            }
+            },
+            userSettings: JSON.parse(localStorage.getItem("userSettings"))
         };
     }
 
@@ -46,6 +48,13 @@ class App extends Component {
 
     updateCurrentView = (currentView) => {
         this.setState({ currentView });
+    }
+
+    updateUserSettings = (userSettings) => {
+        this.setState({ userSettings: JSON.parse(userSettings) });
+
+        // Store
+        localStorage.setItem("userSettings", userSettings);
     }
 
     toggleSidebar = () => {
@@ -86,7 +95,7 @@ class App extends Component {
                 )}
 
                 {currentView === 'SETTINGS' && (
-                    <div>Settings!!</div>
+                    <UserSettings userSettings={this.state.userSettings} updateUserSettings={this.updateUserSettings} />
                 )}
 
             </section>
