@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
+import './sidebar.css';
+
+
 class SideBar extends Component {
     render() {
         return (
-            <aside>
-                <ul>
-                    <li onClick={this.props.updateCurrentView.bind(this, 'MAILER')}>Mail</li>
-                    <li onClick={this.props.updateCurrentView.bind(this, 'SETTINGS')}>Settings</li>
-                </ul>
-            </aside>
+            <nav className="sidebar list-unstyled">
+                <a href="#" className="sidebar__item" onClick={this.props.updateCurrentView.bind(this, 'MAILER')}>M</a>
+                <a href="#" className="sidebar__item" onClick={this.props.updateCurrentView.bind(this, 'SETTINGS')}>S</a>
+            </nav>
         );
     }
 }

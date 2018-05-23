@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import './styles/styles.css';
+import './index.css';
 import Header from './components/header/header.js';
 import SideBar from './components/sideBar/sideBar.js';
 import Tasks from './components/tasks/tasks';
@@ -67,15 +68,18 @@ class App extends Component {
         let { currentView, currentTask, displaySidebar } = this.state;
 
         return (
-            <section>
-                <Header currentTask={currentTask} toggleSidebar={this.toggleSidebar} />
+            <section className="main">
 
-                {displaySidebar && (
-                    <SideBar updateCurrentView={this.updateCurrentView} />
-                )}
+                <div className="main__header">
+                    <Header className="" currentTask={currentTask} toggleSidebar={this.toggleSidebar} />
+                </div>
+
+                <div className="main__sidebar">
+                    <SideBar className="main__sidebar" updateCurrentView={this.updateCurrentView} />
+                </div>
 
                 {currentView === 'MAILER' && (
-                    <div>
+                    <div className="main__content">
                         {currentTask === Tasks.GENERATE_EMAILS && (
                             <GenerateMail updateEmails={this.updateEmails} taskDone={this.taskDone} />
                         )}
@@ -95,7 +99,9 @@ class App extends Component {
                 )}
 
                 {currentView === 'SETTINGS' && (
-                    <UserSettings userSettings={this.state.userSettings} updateUserSettings={this.updateUserSettings} />
+                    <div className="main__content">
+                        <UserSettings className="main__content" userSettings={this.state.userSettings} updateUserSettings={this.updateUserSettings} />
+                    </div>
                 )}
 
             </section>

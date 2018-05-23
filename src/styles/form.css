@@ -29,11 +29,17 @@
     border: none;
 
     color: #fbfbfb;
-    background-color: #2547AA;
+    background-color: var(--primary);
 
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+
+    transition: transform 0.3s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
     .btn--submit {

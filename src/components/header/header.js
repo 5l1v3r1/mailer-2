@@ -15,7 +15,7 @@ class Header extends Component {
 
         return (
             <header>
-                <div onClick={this.props.toggleSidebar}>=</div>
+                {/* <div onClick={this.props.toggleSidebar}>=</div> */}
                 <ul>
                     {currentTaskIndex >= 0 && (
                         <li>> Generate Emails</li>

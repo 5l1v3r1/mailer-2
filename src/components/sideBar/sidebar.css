@@ -1,3 +1,33 @@
+@import "../../styles/variables.css";
+
 /*========================*\
     #Sidebar
 \*========================*/
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: var(--off-grey);
+    height: 100%;
+
+
+    &__item {
+        padding: 1rem 1.3rem;
+
+        text-align: center;
+        text-decoration: none;
+
+        transition: background-color 0.27s ease-out,
+                    color 0.27s ease-out;
+
+        &:first-child {
+            margin-top: 0.8rem;
+        }
+
+        &:hover {
+            color: var(--white);
+            background-color: var(--primary);
+        }
+    }
+}
