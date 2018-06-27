@@ -8,7 +8,7 @@ import './sidebar.css';
 class SideBar extends Component {
     render() {
         return (
-            <nav className="sidebar list-unstyled">
+            <nav className="sidebar">
                 <a href="#" className="sidebar__item" onClick={this.props.updateCurrentView.bind(this, 'MAILER')}>M</a>
                 <a href="#" className="sidebar__item" onClick={this.props.updateCurrentView.bind(this, 'SETTINGS')}>S</a>
             </nav>

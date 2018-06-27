@@ -1,3 +1,73 @@
+@import "../../styles/variables.css";
+
 /*========================*\
     #Header
 \*========================*/
+
+/*========================*\
+    #Task list
+\*========================*/
+
+.task-list {
+    display: flex;
+}
+
+.task-item {
+    --arrow-color: var(--off-grey);
+    --arrow-size: 16px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 0.6rem;
+    margin: 0 calc(var(--arrow-size));
+
+    color: white;
+    background-color: var(--arrow-color);
+
+    position: relative;
+    height: calc(var(--arrow-size) * 2);
+
+    &--active {
+        --arrow-color: var(--primary);
+    }
+
+    &:before {
+        content: "";
+
+        border-top: var(--arrow-size) solid var(--arrow-color);
+        border-bottom: var(--arrow-size) solid var(--arrow-color);
+        border-left: var(--arrow-size) solid transparent;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        transform: translateX(-100%);
+    }
+
+    &:after {
+        content: "";
+
+        border-top: var(--arrow-size) solid transparent;
+        border-bottom: var(--arrow-size) solid transparent;
+        border-left: var(--arrow-size) solid var(--arrow-color);
+
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        transform: translateX(100%);
+    }
+
+    /*------------------------*\
+        #First item Styling
+    \*------------------------*/
+    &:first-child {
+        margin-left: 0;
+        &:before {
+            border: none;
+            margin-left: 0;
+        }
+    }
+}

@@ -1,36 +1,63 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import Tasks from '../tasks/tasks';
-
+import "./header.css";
+import Tasks from "../tasks/tasks";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
     render() {
         let { currentTask } = this.props;
         let currentTaskIndex = Tasks.getTaskIndex(currentTask);
 
         return (
             <header>
-                {/* <div onClick={this.props.toggleSidebar}>=</div> */}
-                <ul>
+                <ul className="task-list list-unstyled">
                     {currentTaskIndex >= 0 && (
-                        <li>> Generate Emails</li>
+                        <li
+                            className={`task-item ${
+                                currentTaskIndex === 0
+                                    ? "task-item--active"
+                                    : ""
+                            }`}
+                        >
+                            Generate Emails
+                        </li>
                     )}
 
                     {currentTaskIndex >= 1 && (
-                        <li>> Edit Emails</li>
+                        <li
+                            className={`task-item ${
+                                currentTaskIndex === 1
+                                    ? "task-item--active"
+                                    : ""
+                            }`}
+                        >
+                            Edit Emails
+                        </li>
                     )}
 
                     {currentTaskIndex >= 2 && (
-                        <li>> Create Message</li>
+                        <li
+                            className={`task-item ${
+                                currentTaskIndex === 2
+                                    ? "task-item--active"
+                                    : ""
+                            }`}
+                        >
+                            Create Message
+                        </li>
                     )}
 
                     {currentTaskIndex >= 3 && (
-                        <li>> Done</li>
+                        <li
+                            className={`task-item ${
+                                currentTaskIndex === 3
+                                    ? "task-item--active"
+                                    : ""
+                            }`}
+                        >
+                            Done
+                        </li>
                     )}
                 </ul>
             </header>
@@ -39,8 +66,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    toggleSidebar: PropTypes.func.isRequired,
-    currentTask: PropTypes.string
-}
+    currentTask: PropTypes.string,
+};
 
 export default Header;

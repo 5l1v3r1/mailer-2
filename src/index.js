@@ -22,7 +22,6 @@ class App extends Component {
 
         // Test state 1
         this.state = {
-            displaySidebar: false,
             currentView: 'MAILER',
             currentTask: Tasks.GENERATE_EMAILS,
             emails: [],
@@ -58,11 +57,6 @@ class App extends Component {
         localStorage.setItem("userSettings", userSettings);
     }
 
-    toggleSidebar = () => {
-        this.setState((prevState) => ({ displaySidebar: !prevState.displaySidebar }));
-    }
-
-
 
     render() {
         let { currentView, currentTask, displaySidebar } = this.state;
@@ -71,7 +65,7 @@ class App extends Component {
             <section className="main">
 
                 <div className="main__header">
-                    <Header className="" currentTask={currentTask} toggleSidebar={this.toggleSidebar} />
+                    <Header className="" currentTask={currentTask} />
                 </div>
 
                 <div className="main__sidebar">
